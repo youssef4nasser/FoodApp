@@ -8,13 +8,13 @@ function ForgetPass() {
 
   const navigate = useNavigate()
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
     try {
       const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Reset/Request', data);
-      navigate('/resetPass')
+      navigate('/reset-password')
       toast.success('Please check your email')
       console.log(response);
     } catch (error) {
@@ -49,7 +49,7 @@ function ForgetPass() {
                   })} type="email" className="form-control" placeholder="Enter your E-mail" aria-label="E-mail" aria-describedby="basic-addon1" />
                 </div>
                 {errors.email && <span className='text-danger'>{errors.email.message}</span>}
-                <button className='btn btn-success d-block w-100 mb-3 mt-5'>Submit</button>
+                <button className='btn btn-success d-block w-100 mb-3 mt-5' disabled={isSubmitting}>Submit</button>
               </form>
             </div>
           </div>

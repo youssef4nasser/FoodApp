@@ -2,18 +2,16 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../Navbar/Navbar.jsx"
 import SideBar from "../SideBar/SideBar.jsx"
 
-function MasterLayout() {
+function MasterLayout({loginData}) {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-3 vh-100 bg-info">
-            <SideBar />
-          </div>
-          <div className="col-md-9">
-            <Navbar />
-            <Outlet />
-          </div>
+      <div className="d-flex">
+        <div className="bg-info">
+          <SideBar />
+        </div>
+        <div className="w-100 bg-danger">
+          <Navbar loginData={loginData} />
+          <Outlet />
         </div>
       </div>
     </>

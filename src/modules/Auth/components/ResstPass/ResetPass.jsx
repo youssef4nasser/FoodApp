@@ -3,11 +3,13 @@ import logo from '../../../../assets/imgaes/logo.png'
 import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 function ResetPass() {
   const navigate = useNavigate()
+  const [isPassShow, setisPassShow] = useState(false)
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitting }, watch } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -74,7 +76,10 @@ function ResetPass() {
                       value: 6,
                       message: 'New password should be at least 6 characters long',
                     },
-                  })} type="password" className="form-control" placeholder="New password" aria-label="New password" aria-describedby="basic-addon1" />
+                  })} type={isPassShow ? 'text' : 'password'} className="form-control" placeholder="New password" aria-label="New password" aria-describedby="basic-addon1" />
+                  <button type='button' className="input-group-text" id="basic-addon1" onMouseUp={(e) => e.preventDefault()} onMouseDown={(e) => e.preventDefault()} onClick={() => setisPassShow((prev) => !prev)}>
+                    <i className={`fa ${isPassShow ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden='true'></i>
+                  </button>
                 </div>
                 {errors.password && <span className='text-danger'>{errors.password.message}</span>}
                 {/* Confirm new password */}
@@ -91,10 +96,13 @@ function ResetPass() {
                       value: 6,
                       message: 'Confirm password should be at least 6 characters long',
                     },
-                  })} type="password" className="form-control" placeholder="Confirm new password" aria-label="New password" aria-describedby="basic-addon1" />
+                  })} type={isPassShow ? 'text' : 'password'} className="form-control" placeholder="Confirm new password" aria-label="New password" aria-describedby="basic-addon1" />
+                  <button type='button' className="input-group-text" id="basic-addon1" onMouseUp={(e) => e.preventDefault()} onMouseDown={(e) => e.preventDefault()} onClick={() => setisPassShow((prev) => !prev)}>
+                    <i className={`fa ${isPassShow ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden='true'></i>
+                  </button>
                 </div>
                 {errors.confirmPassword && <span className='text-danger'>{errors.confirmPassword.message}</span>}
-                <button className='btn btn-success d-block w-100 my-3'>Reset Password</button>
+                <button className='btn btn-success d-block w-100 my-3' disabled={isSubmitting}>Reset Password</button>
               </form>
             </div>
           </div>

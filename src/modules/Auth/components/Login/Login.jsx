@@ -3,18 +3,22 @@ import logo from '../../../../assets/imgaes/logo.png'
 import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
-function Login() {
+function Login({ saveLoginData }) {
 
   const navigate = useNavigate()
+  const [isPassShow, setisPassShow] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Login', data);
       navigate('/dashboard')
       toast.success('Login successfully')
+      localStorage.setItem('token', response.data.token)
+      saveLoginData()
       console.log(response);
     } catch (error) {
       toast.error(error.response.data.message)
@@ -58,14 +62,17 @@ function Login() {
                       value: 6,
                       message: 'Password should be at least 6 characters long',
                     },
-                  })} type="password" className="form-control" placeholder="Password" aria-label="E-mail" aria-describedby="basic-addon1" />
+                  })} type={isPassShow ? 'text' : 'password'} className="form-control" placeholder="Password" aria-label="E-mail" aria-describedby="basic-addon1" />
+                  <button type='button' className="input-group-text" id="basic-addon1" onMouseUp={(e) => e.preventDefault()} onMouseDown={(e) => e.preventDefault()} onClick={() => setisPassShow((prev) => !prev)}>
+                    <i className={`fa ${isPassShow ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden='true'></i>
+                  </button>
                 </div>
                 {errors.password && <span className='text-danger'>{errors.password.message}</span>}
                 <div className="links d-flex justify-content-between">
                   <Link to={'/register'} className='text-muted text-decoration-none'>Register Now?</Link>
-                  <Link to={'/forgetPass'} className='text-success text-decoration-none'>Forgot Password?</Link>
+                  <Link to={'/forget-password'} className='text-success text-decoration-none'>Forgot Password?</Link>
                 </div>
-                <button className='btn btn-success d-block w-100 my-3'>Login</button>
+                <button className='btn btn-success d-block w-100 my-3' disabled={isSubmitting}>Login</button>
               </form>
             </div>
           </div>
