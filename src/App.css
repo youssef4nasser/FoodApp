@@ -4,6 +4,10 @@
     background-position: center;
 }
 
+.home-content{
+    background-color: #F0FFEF;
+}
+
 .bg-overlay {
     background: linear-gradient(45deg, rgba(47, 140, 96, .5), rgba(0, 0, 0, .5));
 }

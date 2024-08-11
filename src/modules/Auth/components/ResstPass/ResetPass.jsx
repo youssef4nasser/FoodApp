@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { AUTH_URLS } from '../../../../constants/END_POINTS.js';
 
 function ResetPass() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ function ResetPass() {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Reset', data);
+      const response = await axios.post(AUTH_URLS.reset, data);
       console.log(response);
       toast.success('Password Reset Successfully')
       navigate('/login')

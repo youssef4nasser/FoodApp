@@ -3,6 +3,7 @@ import logo from '../../../../assets/imgaes/logo.png'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AUTH_URLS } from '../../../../constants/END_POINTS.js';
 
 function ForgetPass() {
 
@@ -13,7 +14,7 @@ function ForgetPass() {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Reset/Request', data);
+      const response = await axios.post(AUTH_URLS.resetRequest, data);
       navigate('/reset-password')
       toast.success('Please check your email')
       console.log(response);

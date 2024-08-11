@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { AUTH_URLS } from '../../../../constants/END_POINTS.js';
 
 function Login({ saveLoginData }) {
 
@@ -14,7 +15,7 @@ function Login({ saveLoginData }) {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Login', data);
+      const response = await axios.post(AUTH_URLS.login, data);
       navigate('/dashboard')
       toast.success('Login successfully')
       localStorage.setItem('token', response.data.token)

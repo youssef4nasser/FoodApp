@@ -6,10 +6,10 @@ function MasterLayout({loginData}) {
   return (
     <>
       <div className="d-flex">
-        <div className="bg-info">
+        <div className="">
           <SideBar />
         </div>
-        <div className="w-100 bg-danger">
+        <div className="w-100">
           <Navbar loginData={loginData} />
           <Outlet />
         </div>
