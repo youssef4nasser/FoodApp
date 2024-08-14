@@ -13,19 +13,11 @@ import UsersList from './modules/Users/components/UsersList/UsersList.jsx'
 import Notfound from './modules/Shared/components/Notfound/Notfound.jsx'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react'
-import { jwtDecode } from 'jwt-decode'
 import ProtectedRoute from './modules/Shared/components/ProtectedRoute/ProtectedRoute.jsx'
+import RecipeData from './modules/Recipes/components/RecipeData/RecipeData.jsx'
+import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount.jsx'
 
 function App() {
-
-  const [loginData, setLoginData] = useState(null)
-
-  const saveLoginData = () => {
-    const encodedToken = localStorage.getItem('token')
-    const decodedToken = jwtDecode(encodedToken)
-    setLoginData(decodedToken)
-  }
 
   const routes = createBrowserRouter([
     {
@@ -33,21 +25,23 @@ function App() {
       element: <AuthLayout />,
       errorElement: <Notfound />,
       children: [
-        { index: true, element: <Login saveLoginData={saveLoginData} /> },
-        { path: 'login', element: <Login saveLoginData={saveLoginData} /> },
+        { index: true, element: <Login /> },
+        { path: 'login', element: <Login /> },
         { path: 'forget-password', element: <ForgetPass /> },
         { path: 'reset-password', element: <ResetPass /> },
+        { path: 'verify-account', element: <VerifyAccount /> },
         { path: 'register', element: <Register /> },
       ],
     },
     {
       path: 'dashboard',
-      element: <ProtectedRoute loginData={loginData}><MasterLayout loginData={loginData} /></ProtectedRoute>,
+      element: <ProtectedRoute><MasterLayout /></ProtectedRoute>,
       errorElement: <Notfound />,
       children: [
         { index: true, element: <Home /> },
         { path: 'home', element: <Home /> },
         { path: 'recipesList', element: <RecipesList /> },
+        { path: 'recipe-data', element: <RecipeData /> },
         { path: 'ctegoriesList', element: <CtegoriesList /> },
         { path: 'usersList', element: <UsersList /> },
       ],

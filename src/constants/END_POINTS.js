@@ -8,6 +8,7 @@ export const AUTH_URLS = {
     register: `${BASE_AUTHS}/Register`,
     resetRequest: `${BASE_AUTHS}/Reset/Resquest`,
     reset: `${BASE_AUTHS}/Reset`,
+    verify: `${BASE_AUTHS}/Verify`,
 }
 
 // ======================================================================
@@ -18,6 +19,7 @@ const BASE_CATEGORIES = `${BASE_URL}/Category`
 export const CATEGORIES_URLS = {
     getList: `${BASE_CATEGORIES}`,
     delete: (id) => `${BASE_CATEGORIES}/${id}`,
+    add: `${BASE_CATEGORIES}`
 }
 
 // ======================================================================
@@ -28,6 +30,7 @@ const BASE_RECIPES = `${BASE_URL}/Recipe`
 export const RECIPES_URLS = {
     getList: `${BASE_RECIPES}`,
     delete: (id) => `${BASE_RECIPES}/${id}`,
+    add: `${BASE_RECIPES}`
 }
 
 // ======================================================================
@@ -39,3 +42,7 @@ export const USERS_URLS = {
     getList: `${BASE_USERS}`,
     deleteUser: (id) => `${BASE_USERS}/${id}`,
 }
+
+// ======================================================================
+// TAGs URLs
+export const GETALLTAGS = `${BASE_URL}/tag`

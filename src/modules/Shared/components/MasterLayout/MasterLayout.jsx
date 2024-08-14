@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../Navbar/Navbar.jsx"
 import SideBar from "../SideBar/SideBar.jsx"
 
-function MasterLayout({loginData}) {
+function MasterLayout() {
   return (
     <>
       <div className="d-flex">
@@ -10,7 +10,7 @@ function MasterLayout({loginData}) {
           <SideBar />
         </div>
         <div className="w-100">
-          <Navbar loginData={loginData} />
+          <Navbar />
           <Outlet />
         </div>
       </div>

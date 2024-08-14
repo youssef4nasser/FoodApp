@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { AuthContext } from "../../../../context/AuthContext.jsx"
 
-function Navbar({loginData}) {
+function Navbar() {
+  const {loginData} = useContext(AuthContext)
+
   return <>
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">

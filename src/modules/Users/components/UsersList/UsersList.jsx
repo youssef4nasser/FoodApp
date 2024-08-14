@@ -11,8 +11,13 @@ import { USERS_URLS } from "../../../../constants/END_POINTS.js"
 
 function UsersList() {
   const [UsersList, setUsersList] = useState([])
+  const [arrayOfPages, setarrayOfPages] = useState([])
   const [show, setShow] = useState(false);
   const [userId, setuserId] = useState(0)
+  const [userNameValue, setUserNameValue] = useState('')
+  const [emailValue, setEmailValue] = useState('')
+  const [countryValue, setCountryValue] = useState('')
+  const [groupsValue, setGroupsValue] = useState(null)
 
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -35,9 +40,14 @@ function UsersList() {
     }
   }
 
-  const getUsersList = async () => {
+  const getUsersList = async (pageSize, pageNumber, userName, email, country, groups) => {
     try {
-      const res = await axios.get(USERS_URLS.getList, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+      const res = await axios.get(USERS_URLS.getList,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          params: { pageSize, pageNumber, userName, email, country, groups }
+        })
+      setarrayOfPages(Array(res.data.totalNumberOfPages).fill().map((_, i) => i + 1))
       setUsersList(res.data.data)
       console.log(res);
     } catch (error) {
@@ -46,8 +56,25 @@ function UsersList() {
     }
   }
 
+  const getUserNameValue = (input) => {
+    setUserNameValue(input.target.value);
+    getUsersList(5, 1, input.target.value, emailValue, countryValue, groupsValue);
+  }
+  const getEmailValue = (input) => {
+    setEmailValue(input.target.value);
+    getUsersList(5, 1, userNameValue, input.target.value, countryValue, groupsValue);
+  }
+  const getCountryValue = (input) => {
+    setCountryValue(input.target.value);
+    getUsersList(5, 1, userNameValue, emailValue, input.target.value, groupsValue);
+  }
+  const getGroupsValue = (input) => {
+    setGroupsValue(input.target.value);
+    getUsersList(5, 1, userNameValue, emailValue, countryValue, input.target.value);
+  }
+
   useEffect(() => {
-    getUsersList()
+    getUsersList(10, 1)
   }, [])
 
   return <>
@@ -70,11 +97,34 @@ function UsersList() {
           <h4>Users Table Details</h4>
           <span>You can check all details</span>
         </div>
-        <div className="add">
-          <button className="btn btn-success py-2 px-3">Add New Category</button>
-        </div>
       </div>
       <div className="tableContainer">
+        <div className="row mt-3">
+          <div className="col-md-3">
+            <div className="searchBar">
+              <input onChange={getUserNameValue} type="text" className="form-control" placeholder="Search by name" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="categoriesBar">
+              <input onChange={getEmailValue} type="text" className="form-control" placeholder="Search by emali" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="countryBar">
+              <input onChange={getCountryValue} type="text" className="form-control" placeholder="Search by country" />
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="groupsBar">
+              <select onClick={getGroupsValue} className="form-control mb-2">
+                <option disabled>select groups</option>
+                <option value={1}>admin</option>
+                <option value={2}>system user</option>
+              </select>
+            </div>
+          </div>
+        </div>
         {UsersList.length > 0 ?
           <table className="table mt-4 text-center">
             <thead>
@@ -104,6 +154,23 @@ function UsersList() {
           </table>
           : <NoData />}
       </div>
+      <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          <li className="page-item">
+            <a className="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {arrayOfPages.map((pageNumber) => {
+            return <li key={pageNumber} onClick={() => getUsersList(10, pageNumber)} className="page-item"><a className="page-link" href="#">{pageNumber}</a></li>
+          })}
+          <li className="page-item">
+            <a className="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </>
 

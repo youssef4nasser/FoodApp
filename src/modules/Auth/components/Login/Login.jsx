@@ -3,11 +3,12 @@ import logo from '../../../../assets/imgaes/logo.png'
 import { useForm } from 'react-hook-form'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AUTH_URLS } from '../../../../constants/END_POINTS.js';
+import { AuthContext } from '../../../../context/AuthContext.jsx';
 
-function Login({ saveLoginData }) {
-
+function Login() {
+const {saveLoginData} = useContext(AuthContext)
   const navigate = useNavigate()
   const [isPassShow, setisPassShow] = useState(false)
 
