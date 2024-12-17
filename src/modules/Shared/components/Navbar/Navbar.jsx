@@ -1,9 +1,10 @@
 import { useContext } from "react"
 import { AuthContext } from "../../../../context/AuthContext.jsx"
+import { BASE_IMG } from "../../../../constants/END_POINTS.js";
 
 function Navbar() {
-  const {loginData} = useContext(AuthContext)
-
+  const { currentUser } = useContext(AuthContext);
+  
   return <>
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -11,12 +12,16 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="d-flex w-75" role="search">
-            <input className="form-control me-2 w-100" type="search" placeholder="Search" aria-label="Search" />
+          <form className="w-75 position-relative xs-from" role="search">
+            <i className="fa-solid me-4 fa-magnifying-glass text-secondary position-absolute top-50 end-0 translate-middle"></i>
+            <input className="form-control rounded-4" type="search" placeholder="Search Here" aria-label="Search" />
           </form>
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 w-25">
-            <li className="nav-item text-center">
-              Hello {loginData?.userName}
+          <ul className="navbar-nav ms-auto align-items-center">
+            <li className="nav-item me-2">
+              <img className="img-fluid rounded-circle" width={40} src={BASE_IMG + currentUser?.imagePath} alt="User-Profile-Image" />
+            </li>
+            <li className="nav-item">
+              {currentUser?.userName}
             </li>
           </ul>
         </div>

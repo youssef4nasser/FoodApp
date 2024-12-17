@@ -12,6 +12,26 @@
     background: linear-gradient(45deg, rgba(47, 140, 96, .5), rgba(0, 0, 0, .5));
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.auth-container .links .hover-decoration:hover{
+    text-decoration: underline !important
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .headerContainer {
     background-image: url('./assets//imgaes//header-circles.svg');
     background-size: cover;
@@ -38,6 +58,38 @@
     color: #fff !important
 }
 
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: #009247 transparent;
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
 
 .SidebarContainer .ps-menu-button:hover {
     background-color: rgba(47, 140, 96, .5) !important;
@@ -45,4 +97,44 @@
 
 .SidebarContainer .firstItem .ps-menu-button:hover {
     background-color: transparent !important;
+}
+
+.pagination .page-link{
+    color: #000 !important
+} 
+
+.pagination .active{
+    background-color: #999 !important;
+    border-color: #999 !important;
+}
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    .xs-from{
+        margin: 10px auto !important;
+    }
+    .xs-btnn{
+        /* padding: 0 !important; */
+        /* font-size:  !important; */
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+    
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+    
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) { 
+    
+}
+
+/* X-Large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) { 
+    
 }

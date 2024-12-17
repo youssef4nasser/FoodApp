@@ -11,7 +11,9 @@ function Home() {
         <h5>Fill the <span className="text-success">Recipes !</span></h5>
         <p>you can now fill the meals easily using the table and form ,<br /> click here and sill it with the table !</p>
       </div>
-      <button onClick={() => navigate('/dashboard/recipesList')} className="btn btn-success">Fill Recipes <i className="fa fa-arrow-right" aria-hidden="true"></i></button>
+      <div className="">
+        <button onClick={() => navigate('/dashboard/recipesList')} className="btn btn-success xs-btnn">Fill Recipes <i className="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
     </div>
   </>
 

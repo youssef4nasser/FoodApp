@@ -5,11 +5,11 @@ import SideBar from "../SideBar/SideBar.jsx"
 function MasterLayout() {
   return (
     <>
-      <div className="d-flex">
-        <div className="">
+      <div className="d-flex vh-100 position-fixed w-100">
+        <div>
           <SideBar />
         </div>
-        <div className="w-100">
+        <div className="w-100 overflow-y-scroll">
           <Navbar />
           <Outlet />
         </div>

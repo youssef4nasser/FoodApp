@@ -1,10 +1,10 @@
 
 function Header({ title, description, imgUrl }) {
   return (
-    <div className="container-fluid p-5 bg-success headerContainer text-white">
+    <div className="container-fluid bg-success py-3 rounded-2 headerContainer text-white">
       <div className="row align-items-center">
         <div className="col-md-6">
-          <div className="content">
+          <div className="content ps-4">
             <h1>{title}</h1>
             <p>{description}</p>
           </div>

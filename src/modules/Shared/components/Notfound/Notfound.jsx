@@ -6,7 +6,7 @@ function Notfound() {
   return <>
     <div className="container-fluid notfoundContainer">
       <div className="log mt-3 mb-5">
-        <img src={logo} className='w-25' alt="logo" />
+        <img src={logo} loading='lazy' className='w-25' alt="logo" />
       </div>
       <div className="d-flex pt-5 align-items-center">
         <div className="content align-self-end ps-5">
@@ -17,7 +17,7 @@ function Notfound() {
         </div>
       </div>
       <div className="position-absolute bottom-0 end-0">
-        <img src={bgVector} className=' w-100' alt="404" />
+        <img src={bgVector} loading='lazy' className=' w-100' alt="404" />
       </div>
     </div>
   </>

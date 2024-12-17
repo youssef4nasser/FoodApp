@@ -16,6 +16,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from './modules/Shared/components/ProtectedRoute/ProtectedRoute.jsx'
 import RecipeData from './modules/Recipes/components/RecipeData/RecipeData.jsx'
 import VerifyAccount from './modules/Auth/components/VerifyAccount/VerifyAccount.jsx'
+import Favorite from './modules/Recipes/components/Favorite/Favorite.jsx'
+import AccountSettings from './modules/Auth/components/AccountSettings/AccountSettings.jsx'
 
 function App() {
 
@@ -42,10 +44,14 @@ function App() {
         { path: 'home', element: <Home /> },
         { path: 'recipesList', element: <RecipesList /> },
         { path: 'recipe-data', element: <RecipeData /> },
+        { path: 'recipe-update/:id', element: <RecipeData /> },
+        { path: 'favorite', element: <Favorite /> },
         { path: 'ctegoriesList', element: <CtegoriesList /> },
         { path: 'usersList', element: <UsersList /> },
+        { path: 'profile-settings', element: <AccountSettings /> },
       ],
     },
+    { path: 'not-found', element: <Notfound /> },
   ])
 
   return <>
